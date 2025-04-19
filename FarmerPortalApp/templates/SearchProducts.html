@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Farmer's Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap & FontAwesome CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <script>
+        function validate() {
+            var quantity = document.forms["f1"]["t2"].value;
+
+            if (quantity == null || quantity == "") {
+                alert("⚠️ Quantity must be entered.");
+                document.f1.t2.focus();
+                return false;
+            }
+
+            if (isNaN(quantity)) {
+                alert("❌ Please enter a valid quantity number.");
+                document.f1.t2.focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+    <style>
+        /* Blurry Background Effect */
+        body {
+            background: url('https://risingnepaldaily.com/storage/media/20098/Untitled-1.gif') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header Styling */
+        #header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #header font {
+            font-size: 20px;
+            font-weight: bold;
+            color: yellow;
+            text-shadow: 2px 2px 5px black;
+        }
+
+        /* Navigation Menu */
+        .menu {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .menu a {
+            color: white;
+            font-size: 18px;
+            margin: 10px;
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            background-color: #28a745;
+            transform: scale(1.05);
+        }
+
+        /* Image Styling */
+        .pic {
+            width: 100%;
+            max-width: 700px;
+            height: 300px;
+            object-fit: cover;
+            opacity: 0.85;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Form Styling */
+        .form-container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- Header -->
+        <div id="header">
+            <font><i class="fas fa-seedling"></i> Block Chain For Supply Chain Transparency In Agriculture</font>
+        </div>
+
+        <!-- Navigation Menu -->
+        <div class="menu">
+            <a href="{% url 'BrowseProducts' %}"><i class="fas fa-search"></i> Browse Products</a>
+            <a href="{% url 'index' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+
+        <!-- Image Section -->
+        <div class="text-center mt-4">
+            <img class="pic" src="https://i0.wp.com/fmb.co.bw/wp-content/uploads/2022/12/tech.jpg?resize=702%2C302&ssl=1" alt="Farmer Image">
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-container">
+            <h3 class="text-center"><b>Search Product Screen</b></h3>
+
+            <form name="f1" method="post" action="{% url 'SearchProductAction' %}" onsubmit="return validate()">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="t2" class="form-label">Enter Quantity:</label>
+                    <input type="text" name="t2" class="form-control" id="t2">
+                </div>
+                <button type="submit" class="btn btn-success w-100"><i class="fas fa-search"></i> Search</button>
+            </form>
+        </div>
+
+        <!-- Data Message Section -->
+		<div class="mt-4 text-center p-3" style="background-color: rgba(255, 255, 255, 0.669); border-radius: 10px; box-shadow: 0px 2px 5px rgba(0,0,0,0.2);">
+			<p class="text-danger fw-bold">{{ data|safe }}</p>
+		</div>
+		
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

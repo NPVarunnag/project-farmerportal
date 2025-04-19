@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Farmer's Portal</title>
+
+    <style>
+        /* 🔥 Transparent Background (80% Transparency) */
+        body {
+            background: linear-gradient(135deg, rgba(34, 193, 195, 0.2), rgba(253, 187, 45, 0.2)), 
+                        url('https://cdn.wikifarmer.com/images/thumbnail/2024/04/Untitled-design-31-1200x630.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* 🔥 Glassmorphism Effect */
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.2); /* 80% Transparent */
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 20px;
+            width: 60%;
+            margin: auto;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .glassmorphism:hover {
+            transform: scale(1.03);
+        }
+
+        /* 🔥 Transparent Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.4); /* 80% Transparent */
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .nav-link {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .nav-link:hover {
+            color: #ffcc00;
+            transform: scale(1.1);
+        }
+
+        /* 🔥 Form Styling */
+        input, select {
+            width: 80%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.8); /* Input fields slightly transparent */
+            color: black;
+        }
+
+        /* 🔥 Submit Button */
+        .btn-custom {
+            background: linear-gradient(135deg, #ffcc00, #ff6600);
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            color: white;
+            border-radius: 8px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-custom:hover {
+            background: linear-gradient(135deg, #ff6600, #ffcc00);
+            transform: scale(1.05);
+        }
+
+        /* 🔥 3D Hover Effect for Images */
+        .image-container img {
+            border-radius: 10px;
+            width: 100%;
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.08);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.7);
+        }
+    </style>
+
+    <script>
+        function validate() {
+            var x = document.forms["f1"]["username"].value;
+            var y = document.forms["f1"]["password"].value;
+            var c = document.forms["f1"]["contact"].value;
+            var e = document.forms["f1"]["email"].value;
+            var a = document.forms["f1"]["address"].value;
+
+            if (x == null || x == "") {
+                window.alert("Username must be entered");
+                document.f1.username.focus();
+                return false;
+            }
+            if (y == null || y == "") {
+                window.alert("Password must be entered");
+                document.f1.password.focus();
+                return false;
+            }
+            if (c == null || c == "" || isNaN(c)) {
+                window.alert("Please enter a valid contact number");
+                document.f1.contact.focus();
+                return false;
+            }
+            if (e == null || e == "") {
+                window.alert("Email ID must be entered");
+                document.f1.email.focus();
+                return false;
+            }
+            var filter = /^([a-zA-Z0-9_\.\-])+\@(gmail+\.)+(com)+$/;
+            if (!filter.test(e)) {
+                window.alert("Enter a valid email address");
+                document.f1.email.focus();
+                return false;
+            }
+            if (a == null || a == "") {
+                window.alert("Address must be entered");
+                document.f1.address.focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container py-5">
+        <div class="text-center">
+            <h2 class="title-text">Block Chain For Supply Chain Transparency In Agriculture</h2>
+        </div>
+
+        <!-- 🔥 Navigation Bar -->
+        <div class="navbar">
+            <a class="nav-link" href="{% url 'index' %}">Home</a>
+            <a class="nav-link" href="{% url 'Login' %}">Login</a>
+            <a class="nav-link" href="{% url 'Register' %}">Register Here</a>
+        </div>
+
+
+		<br>
+		<br>
+
+        <!-- 🔥 Glassmorphism Signup Form -->
+        <div class="glassmorphism mt-4 p-4">
+            <h3><b>New User Signup Screen</b></h3>
+            <p class="text-warning">{{ data }}</p>
+
+            <form name="f1" method="post" action="{% url 'Signup' %}" enctype="multipart/form-data" onsubmit="return validate()">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+
+                <div class="mb-3">
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" name="contact" placeholder="Contact No">
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" name="email" placeholder="Email ID">
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" name="address" placeholder="Address">
+                </div>
+
+                <div class="mb-3">
+                    <select name="type">
+                        <option value="Farmer">Farmer</option>
+                        <option value="Consumer">Consumer</option>
+                    </select>
+                </div>
+
+                <div class="text-center">
+                    <input type="submit" value="Register" class="btn-custom">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

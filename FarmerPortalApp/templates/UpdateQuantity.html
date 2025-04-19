@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Farmer's Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap & FontAwesome CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        /* Transparent Background with Blurred Effect */
+        body {
+            background: url('https://risingnepaldaily.com/storage/media/20098/Untitled-1.gif') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        .navbar a {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        /* Image Styling */
+        .pic {
+            width: 100%;
+            max-width: 700px;
+            height: 300px;
+            object-fit: cover;
+            opacity: 0.85;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Input and Button Styling */
+        input[type="text"], input[type="submit"] {
+            border-radius: 8px;
+            padding: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            font-size: 18px;
+            transition: 0.3s;
+            border: none;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        h3 {
+            color: white;
+        }
+    </style>
+
+    <script>
+        function validate() {
+            var y = document.forms["f1"]["t2"].value;
+            if (y == null || y == "") {
+                alert("Quantity must be entered");
+                document.f1.t2.focus();
+                return false;
+            }
+            if (isNaN(y)) {
+                alert("Please enter a valid quantity number");
+                document.f1.t2.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><i class="fas fa-tractor"></i> Farmer's Portal</a>
+                <div class="collapse navbar-collapse justify-content-center">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'AddProduct' %}"><i class="fas fa-plus-circle"></i> Add New Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'UpdateQuantity' %}"><i class="fas fa-edit"></i> Update Product Quantity</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'ViewOrders' %}"><i class="fas fa-box"></i> View Consumer Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="text-center mt-4">
+            <h3><b><i class="fas fa-edit"></i> Update Product Quantity</b></h3>
+        </div>
+
+        <div class="text-center mt-3">
+            <img class="pic" src="https://i0.wp.com/fmb.co.bw/wp-content/uploads/2022/12/tech.jpg?resize=702%2C302&ssl=1" alt="Farmer Image">
+        </div>
+
+        <form name="f1" method="post" action="{% url 'QuantityUpdateAction' %}" onsubmit="return validate()">
+            {% csrf_token %}
+            <div class="mt-4 text-center">
+                {{ data|safe }}
+                <div class="mb-3">
+                    <label class="form-label text-white"><i class="fas fa-sort-amount-up"></i> Quantity</label>
+                    <input type="text" name="t2" class="form-control w-50 mx-auto" />
+                </div>
+                <input type="submit" value="Update Quantity" class="btn btn-success">
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

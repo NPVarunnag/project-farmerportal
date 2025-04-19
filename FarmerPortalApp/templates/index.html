@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Farmer's Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 🔥 3D Animated Background */
+        body {
+            background: linear-gradient(135deg, rgba(34, 193, 195, 0.8), rgba(253, 187, 45, 0.8)), 
+                        url('https://agritechdigest.com/wp-content/uploads/2024/04/smart-phone-with-plant-growing-out-it_741212-914.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 🔥 3D Neon Title */
+        .title-text {
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 255, 0, 0.9), 0 0 20px rgba(255, 165, 0, 0.7);
+            animation: neonGlow 1.5s infinite alternate;
+        }
+
+        @keyframes neonGlow {
+            from { text-shadow: 0 0 10px rgba(255, 255, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6); }
+            to { text-shadow: 0 0 20px rgba(255, 255, 0, 1), 0 0 30px rgba(255, 165, 0, 0.8); }
+        }
+
+        /* 🔥 Glassmorphism Card Effect */
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .glassmorphism:hover {
+            transform: scale(1.03);
+        }
+
+        /* 🔥 Animated Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .nav-link:hover {
+            color: #ffcc00 !important;
+            transform: scale(1.1);
+        }
+
+        /* 🔥 3D Hover Effect for Images */
+        .image-container img {
+            border-radius: 10px;
+            width: 100%;
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.08);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.7);
+        }
+
+        /* 🔥 Styled Paragraphs */
+        .content {
+            font-size: 18px;
+            color: white;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container py-5">
+        <div class="text-center">
+            <h2 class="title-text">Block Chain For Supply Chain Transparency In Agriculture </h2>
+        </div>
+        
+        <!-- 🔥 Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark mt-3">
+            <div class="container">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Login' %}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Register' %}">Register Here</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 🔥 Glassmorphism Card -->
+        <div class="glassmorphism mt-4 p-4">
+            <div class="image-container text-center">
+                <img src="https://sofocleblog.wordpress.com/wp-content/uploads/2019/08/blockchain-in-agriculture.png?w=700" alt="Blockchain">
+            </div>
+            
+            <p class="content mt-3">
+                <b>Abstract:</b> Blockchain is a method in which a confirmation of a transaction is kept by means of a cryptocurrency. The record is maintained transversely, linking several computers in a peer-to-peer network. Contracts, transactions, and the records of them define the economic system of a country. They set boundaries and provide security to the assets. Considering the features of blockchain such as immutability and maintaining the footage of transaction details, this paper highlights the usage of blockchain technology with a farmer's portal that keeps the footage of selling and buying information of crops.
+            </p>
+            
+            <p class="content">
+                The proposed solution uses Python as a programming language integrated with the blockchain system that benefits farmers, vendors, and individuals by preserving trade contracts. An interface for farmers is designed using Python programming in combination with blockchain technology to store seller, buyer, selling and buying item details, and total value transacted.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
